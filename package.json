@@ -1,0 +1,22 @@
+{
+  "name": "fullstack-blog",
+  "version": "1.0.0",
+  "description": "- Authentication: JWT based authentication\r - Theme: Dark and Light theme support\r - Editor: Tiptap powered editor for creating/editing posts\r - Visibility: Make blog posts public or private\r - Upvote & Downvote: Upvote and Downvote setup for better visibility",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/index",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.3.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.2.1"
+  }
+}

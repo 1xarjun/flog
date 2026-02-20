@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // Good for recent Node.js versions
+    "module": "CommonJS",
+    "rootDir": "src", // Source files are in src
+    "outDir": "dist", // Compiled files will go to dist
+    "esModuleInterop": true, // Allows default import syntax with CommonJS
+    "strict": true, // Enables all strict type-checking options
+    "forceConsistentCasingInFileNames": true, // Ensures consistency in import casing
+    "skipLibCheck": true, // Skips type checking of declaration files
+    "moduleResolution": "node", // Makes module resolution work like Node.js
+    "resolveJsonModule": true, // Allows importing .json files
+  },
+  "include": ["src"], // Include all files in src
+  "exclude": ["node_modules", "dist"], // Exclude compiled and dependency folders
+}
