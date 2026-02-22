@@ -1,0 +1,63 @@
+import { useState } from "react";
+import { Link } from "react-router";
+
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e: React.SubmitEvent) => {
+    e.preventDefault();
+    console.log({ email, password });
+  };
+
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="space-y-4 bg-white shadow-md w-full max-w-sm text-gray-800 p-6 rounded text-sm">
+        <form onSubmit={handleSubmit}>
+          <h2 className="text-2xl font-semibold mb-6 text-center">Login</h2>
+
+          <label className="block mb-4">
+            <span className="font-medium">Email</span>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="you@example.com"
+              required
+            />
+          </label>
+
+          <label className="block mb-6">
+            <span className="font-medium">Password</span>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="********"
+              required
+            />
+          </label>
+
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition-colors"
+          >
+            Login
+          </button>
+        </form>
+
+        <p className=" text-gray-500 text-center">
+          Don&apos;t have an account?{" "}
+          <Link
+            to="/register"
+            className="text-gray-800 hover:underline underline-offset-4"
+          >
+            Register
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
+}

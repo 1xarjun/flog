@@ -1,15 +1,6 @@
 import { useEffect, useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "./components/ui/avatar";
-import { Button } from "./components/ui/button";
-import {
-  ArrowBigDown,
-  ArrowBigUp,
-  MessageCircle,
-  Reply,
-  Share,
-  Share2,
-} from "lucide-react";
 import Post from "./components/post";
+import { useLoaderData } from "react-router";
 
 export type Post = {
   id: number;
@@ -32,17 +23,19 @@ export type User = {
 };
 
 export default function Posts() {
-  const [posts, setPosts] = useState<Post[] | []>([]);
+  // const [posts, setPosts] = useState<Post[] | []>([]);
 
-  useEffect(() => {
-    async function fetchPosts() {
-      const response = await fetch("http://localhost:3000/posts");
-      const data = await response.json();
-      setPosts(data);
-    }
+  const { posts } = useLoaderData();
 
-    fetchPosts();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchPosts() {
+  //     const response = await fetch("http://localhost:3000/posts");
+  //     const data = await response.json();
+  //     setPosts(data);
+  //   }
+
+  //   fetchPosts();
+  // }, []);
 
   return (
     <div className="pt-21 pb-8 px-6 bg-[#fefefe]">
