@@ -1,3 +1,11 @@
+import Header from "./Header";
+import Posts from "./Posts";
+
 export default function App() {
-  return <div className="text-3xl">hello from client</div>;
+  return (
+    <div>
+      <Header />
+      <Posts />
+    </div>
+  );
 }
