@@ -5,6 +5,7 @@ import Login from "./components/login";
 import RootLayout from "./RootLayout";
 import Posts from "./Posts";
 import Register from "./components/register";
+import AuthLayout from "./AuthLayout";
 
 const router = createBrowserRouter([
   {
@@ -21,12 +22,18 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "login",
-        Component: Login,
-      },
-      {
-        path: "register",
-        Component: Register,
+        path: "auth",
+        Component: AuthLayout,
+        children: [
+          {
+            path: "login",
+            Component: Login,
+          },
+          {
+            path: "register",
+            Component: Register,
+          },
+        ],
       },
     ],
   },
