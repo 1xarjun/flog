@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import Index from ".";
-import Login from "./components/login";
+import Login from "./auth/login";
 import RootLayout from "./RootLayout";
 import Posts from "./Posts";
-import Register from "./components/register";
-import AuthLayout from "./AuthLayout";
+import Register from "./auth/register";
+import AuthLayout from "./auth/AuthLayout";
 
 const router = createBrowserRouter([
   {
