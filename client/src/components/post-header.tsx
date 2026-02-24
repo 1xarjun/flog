@@ -22,6 +22,7 @@ export default function PostHeader({
   return (
     <div className="px-2">
       <div className="flex justify-between items-center border-b text-gray-500 px-2">
+        {/*TODO: small pointer to the user*/}
         <span>
           {formattedDate(new Date(created_at.split("T")[0]).toString())}
         </span>

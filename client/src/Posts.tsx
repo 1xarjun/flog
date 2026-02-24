@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import Pagination from "./components/pagination";
 import Post from "./components/post";
 import { useLoaderData } from "react-router";
 
@@ -46,8 +46,14 @@ export default function Posts() {
           </p>
         )}
 
+        <Pagination />
+
         {posts.length !== 0 &&
-          posts.map((item, i) => <Post key={i} post={item} index={i} />)}
+          posts.map((item: Post, i: number) => (
+            <Post key={i} post={item} index={i} />
+          ))}
+
+        <Pagination />
       </div>
     </div>
   );
