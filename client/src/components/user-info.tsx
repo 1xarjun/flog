@@ -1,4 +1,5 @@
 import type { User } from "@/Posts";
+import { Link } from "react-router";
 
 export default function UserInfo({ user }: { user: User }) {
   return (
@@ -12,9 +13,12 @@ export default function UserInfo({ user }: { user: User }) {
           />
         </div>
 
-        <span className="text-[16px] font-semibold text-violet-400 max-w-28 truncate">
+        <Link
+          to={`users/${user.username}`}
+          className="text-[16px] font-semibold text-violet-400 max-w-28 truncate hover:underline"
+        >
           {user.username}
-        </span>
+        </Link>
         <p className="text-xs text-gray-800 max-w-29 truncate">
           {/*status if provided 12 chars is the limit*/}
           {user.status}

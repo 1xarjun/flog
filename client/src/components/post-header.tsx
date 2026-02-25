@@ -1,4 +1,5 @@
 import { Share2 } from "lucide-react";
+import { formattedDate } from "@/constants";
 
 export default function PostHeader({
   created_at,
@@ -7,18 +8,6 @@ export default function PostHeader({
   created_at: string;
   index: number;
 }) {
-  const formattedDate = (date: string) => {
-    const d = new Date(date);
-    const yyyy = d.getFullYear();
-    const mm = d.toLocaleString("en-IN", {
-      month: "short",
-    });
-    const dd = d.toLocaleString("en-IN", {
-      day: "2-digit",
-    });
-    return `${dd} ${mm}, ${yyyy}`;
-  };
-
   return (
     <div className="px-2">
       <div className="flex justify-between items-center border-b text-gray-500 px-2">

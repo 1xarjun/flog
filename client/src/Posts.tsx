@@ -1,6 +1,6 @@
 import Pagination from "./components/pagination";
 import Post from "./components/post";
-import { useLoaderData } from "react-router";
+import { useQuery } from "@tanstack/react-query";
 
 export type Post = {
   id: number;
@@ -20,22 +20,26 @@ export type User = {
   likes: string[] | [];
   city: string;
   total_posts: number;
+  created_at: string;
 };
 
 export default function Posts() {
-  // const [posts, setPosts] = useState<Post[] | []>([]);
+  const {
+    data: posts,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["posts"],
+    queryFn: () => fetch("http://localhost:3000/posts").then((r) => r.json()),
+  });
 
-  const { posts } = useLoaderData();
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  // useEffect(() => {
-  //   async function fetchPosts() {
-  //     const response = await fetch("http://localhost:3000/posts");
-  //     const data = await response.json();
-  //     setPosts(data);
-  //   }
-
-  //   fetchPosts();
-  // }, []);
+  if (error) {
+    return <div>{error.message}</div>;
+  }
 
   return (
     <div className="pt-21 pb-8 px-6 bg-[#fefefe]">

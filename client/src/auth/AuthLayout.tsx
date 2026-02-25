@@ -1,10 +1,11 @@
+import useUser from "@/query/user";
 import { Outlet } from "react-router";
 import { Navigate } from "react-router";
 
 export default function AuthLayout() {
-  const user = null;
+  const { data: user } = useUser();
 
-  if (user) <Navigate to="/" />;
+  if (user) return <Navigate to="/" replace />;
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
