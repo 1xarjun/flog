@@ -24,8 +24,6 @@ export default function User() {
     staleTime: 0,
   });
 
-  console.log(posts);
-
   const { data, isLoading, error } = useQuery({
     queryKey: ["username"],
     queryFn: () =>
@@ -46,7 +44,7 @@ export default function User() {
   if (error || errorLoadingPosts) {
     return (
       <div className="min-h-screen w-full flex justify-center items-center">
-        Error: {error.message}
+        Error: {error?.message}
       </div>
     );
   }
