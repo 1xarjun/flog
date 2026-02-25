@@ -71,8 +71,8 @@ export default function User() {
                 {user.username}
               </span>
               <p className=" text-gray-800 max-w-full truncate">
-                {/*status if provided 12 chars is the limit*/}
-                {user.status} . From {user.city}
+                {user.status} <span className="mx-1">&bull;</span> From{" "}
+                {user.city}
               </p>
             </div>
 
@@ -120,14 +120,7 @@ export default function User() {
           </div>
         </div>
 
-        {/*user posts*/}
-        <div className="flex gap-4 text-xs text-gray-500 pt-5 items-center">
-          <span className="border-t grow"></span>
-          <span>All posts</span>
-          <span className="border-b grow"></span>
-        </div>
-
-        <div className="pt-5 flex flex-col gap-2.5">
+        <div className="pt-10 flex flex-col gap-2.5">
           {posts.length !== 0 &&
             posts.map((post: PostType, index: number) => (
               <div className="flex flex-col gap-2 text-xs bg-white border">
