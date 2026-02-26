@@ -82,13 +82,6 @@ export default function User() {
                 <span className="text-gray-800">{user.total_posts}</span>
               </li>
               <li className="flex gap-2">
-                Location:
-                <span className="text-gray-800 text-right">
-                  {user.city.split(" ").join("\n")}
-                </span>
-              </li>
-
-              <li className="flex gap-2">
                 Likes:
                 <span className="text-gray-800 text-right">
                   {user.likes.join(", ")}
