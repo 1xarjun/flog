@@ -6,6 +6,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+html {
+    scroll-behavior: smooth;
+}
+
 @theme inline {
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
@@ -129,4 +133,159 @@
     body {
         @apply bg-background text-foreground;
     }
+}
+
+div.tiptap.ProseMirror[contenteditable="true"] {
+    padding: 0.8rem;
+    outline: none;
+    min-height: calc(100vh / 3);
+    max-height: calc(100vh / 1.6);
+    overflow-y: auto;
+    @apply text-gray-700;
+}
+
+/*div.tiptap.ProseMirror[contenteditable="false"] {
+    min-height: 12.5rem;
+}*/
+
+/* ================= PROSEMIRROR (editor) ================= */
+.ProseMirror {
+    @apply text-sm;
+}
+
+.ProseMirror h1 {
+    @apply font-bold text-lg;
+    margin: 14px 0 6px;
+}
+
+.ProseMirror h2 {
+    @apply font-bold text-base;
+    margin: 12px 0 6px;
+}
+
+.ProseMirror h3 {
+    @apply font-bold text-sm;
+    margin: 10px 0 4px;
+}
+
+.ProseMirror ul {
+    padding-left: 18px;
+    list-style-type: disc;
+}
+
+.ProseMirror ol {
+    padding-left: 18px;
+    list-style-type: decimal;
+}
+
+.ProseMirror ul li,
+.ProseMirror ol li {
+    margin: 0.4em 0;
+}
+
+.ProseMirror code {
+    @apply inline-flex p-1 bg-[#f0f0f0] text-gray-700 font-mono rounded my-1 overflow-x-auto;
+}
+
+.ProseMirror blockquote {
+    @apply border-l-3 border-gray-300 pl-3 py-1 my-1;
+}
+
+.ProseMirror a {
+    text-decoration: underline;
+    color: blueviolet;
+    cursor: pointer;
+}
+
+.ProseMirror hr {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    border-radius: 20px;
+    margin: 16px 0;
+}
+
+.ProseMirror p {
+    line-height: 1.4;
+}
+
+.ProseMirror > *:first-child {
+    margin-top: 0;
+}
+
+.ProseMirror > *:last-child {
+    margin-bottom: 0;
+}
+
+/* ================= PREVIEW ================= */
+.preview {
+    @apply text-xs;
+}
+
+.preview h1 {
+    @apply font-bold text-base;
+    margin: 10px 0 4px;
+}
+
+.preview h2 {
+    @apply font-bold text-sm;
+    margin: 8px 0 4px;
+}
+
+.preview h3 {
+    @apply font-semibold text-xs;
+    margin: 6px 0 2px;
+}
+
+.preview ul {
+    padding-left: 16px;
+    list-style-type: disc;
+}
+
+.preview ol {
+    padding-left: 16px;
+    list-style-type: decimal;
+}
+
+.preview ul li,
+.preview ol li {
+    margin: 0.3em 0;
+}
+
+.preview code {
+    @apply inline-flex px-1 py-[2px] bg-[#f0f0f0] text-gray-700 font-mono rounded;
+}
+
+.preview blockquote {
+    @apply border-l-3 border-gray-300 pl-2 py-[2px];
+}
+
+.preview a {
+    text-decoration: underline;
+    color: blueviolet;
+    cursor: pointer;
+}
+
+.preview hr {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    border-radius: 20px;
+    margin: 10px 0;
+}
+
+.preview p {
+    line-height: 1.3;
+}
+
+.preview > *:last-child {
+    margin-bottom: 0;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+    color: #6a7282;
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
 }

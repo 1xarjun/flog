@@ -16,7 +16,7 @@ export default function ErrorPage() {
     <div className="min-h-screen w-full flex flex-col gap-4 justify-center items-center">
       <h1>Oops!</h1>
       <p>Sorry, an unexpected error has occurred.</p>
-      <p>
+      <p className="w-120">
         <i>{errorMessage}</i>
       </p>
     </div>

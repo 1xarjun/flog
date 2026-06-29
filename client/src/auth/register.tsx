@@ -1,14 +1,34 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { queryClient } from "@/query/client";
+import API from "@/api";
 
 export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.SubmitEvent) => {
+  const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
-    console.log({ username, email, password });
+
+    try {
+      const res = await fetch(`${API}/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
+
+      if (!res.ok) throw new Error("Request failed!");
+
+      const result = await res.json();
+      if (result?.data) {
+        queryClient.setQueryData(["user"], result.data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

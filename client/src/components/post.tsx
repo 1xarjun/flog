@@ -1,23 +1,36 @@
-import type { Post } from "@/Posts";
+import type { Post, User } from "@/PostsN";
 import UserInfo from "./user-info";
 import PostToolbar from "./post-toolbar";
 import PostHeader from "./post-header";
 import PostBody from "./post-body";
 
-export default function Post({ post, index }: { post: Post; index: number }) {
+export default function Post({
+  post,
+  index,
+  current,
+}: {
+  post: Post;
+  index: number;
+  current: number;
+}) {
   return (
     <div
-      id={(index + 1).toString()}
-      className="grid grid-cols-8 border rounded-xs"
+      id={post._id}
+      className="grid grid-cols-8 border rounded overflow-hidden scroll-mt-16.5"
     >
-      <div className="col-span-1 flex flex-col border-r bg-[#f9f9f9]">
-        <UserInfo user={post.user} />
+      <div className="col-span-1 flex flex-col border-r bg-[#fbfbfb]">
+        <UserInfo user={post.author as User} />
       </div>
 
-      <div className="col-span-7 flex flex-col gap-2 text-xs bg-white">
-        <PostHeader created_at={post.created_at} index={index} />
-        <PostBody title={post.title} description={post.description} />
-        <PostToolbar upvotes={post.upvotes} downvotes={post.downvotes} />
+      <div className="col-span-7 flex flex-col text-xs bg-white">
+        <PostHeader
+          postId={post._id!}
+          created_at={post.createdAt!}
+          index={index}
+          current={current}
+        />
+        <PostBody repliedTo={post.repliedTo as Post} content={post.content} />
+        <PostToolbar post={post} />
       </div>
     </div>
   );

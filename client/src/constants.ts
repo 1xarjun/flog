@@ -1,4 +1,5 @@
 export const formattedDate = (date: string) => {
+  if (!date) return "NOT PROVIDED";
   const d = new Date(date);
   const yyyy = d.getFullYear();
   const mm = d.toLocaleString("en-IN", {

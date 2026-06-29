@@ -2,13 +2,16 @@ import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import Login from "./auth/login";
 import RootLayout from "./RootLayout";
-import Posts from "./Posts";
+import PostsN from "./PostsN";
 import Register from "./auth/register";
 import AuthLayout from "./auth/AuthLayout";
 import ErrorPage from "./ErrorPage";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./query/client";
 import User from "./components/User";
+import ProtectedRoute from "./components/protected-route";
+import Reply from "./components/reply";
+import Profile from "./components/profile";
 
 const router = createBrowserRouter([
   {
@@ -18,12 +21,13 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Posts,
+        Component: PostsN,
       },
       {
-        path: "users/:username",
+        path: "u/:userId",
         Component: User,
       },
+
       {
         path: "auth",
         Component: AuthLayout,
@@ -38,6 +42,11 @@ const router = createBrowserRouter([
           },
         ],
       },
+
+      // {
+      //   Component: ProtectedRoute,
+      //   children: [{ path: "profile", Component: Profile }],
+      // },
     ],
   },
 ]);

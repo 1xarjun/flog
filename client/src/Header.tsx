@@ -1,12 +1,47 @@
 import { Link } from "react-router";
 import useUser from "./query/user";
 import { Avatar, AvatarImage } from "./components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { LogOutIcon, User } from "lucide-react";
+import { queryClient } from "./query/client";
+import { useMutation } from "@tanstack/react-query";
+import API from "./api";
 
 export default function Header() {
   const { data: user } = useUser();
 
+  // TODO: there seems to be a issue with the cache of the user / posts fix it!
+
+  const logout = async () => {
+    try {
+      const res = await fetch(`$${API}/auth/logout"`, { method: "POST" });
+      if (!res.ok) throw new Error("Request failed!");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const logoutMutation = useMutation({
+    mutationFn: async () => await logout(),
+    onSuccess: async () => {
+      // queryClient.clear();
+      // there might be some stale data in the UI
+      queryClient.invalidateQueries(); // for invalidating all queries
+      // await queryClient.invalidateQueries({ queryKey: ["user"] });
+      // await queryClient.invalidateQueries({ queryKey: ["posts"] });
+      console.log("successfully logged out the user");
+    },
+  });
+
   return (
-    <div className="fixed inset-x-0 bg-white border-b">
+    <div className="fixed inset-x-0 bg-white border-b z-30">
       <div className="max-w-6xl mx-auto py-2.5 flex justify-between items-center h-14">
         <div>
           <Link to="/" className="text-xl font-semibold">
@@ -31,10 +66,46 @@ export default function Header() {
           </div>
         ) : (
           <div className="flex gap-2 items-center text-xs">
-            <Avatar size="lg">
-              <AvatarImage src={user.pfp} />
-            </Avatar>
-            <p>{user.username}</p>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                {user.pfp ? (
+                  <Avatar size="lg">
+                    <AvatarImage className="object-cover" src={user.pfp} />
+                  </Avatar>
+                ) : (
+                  <div
+                    role="button"
+                    className="flex justify-center items-center text-white size-10 text-lg font-bold bg-linear-to-br from-indigo-500 to-pink-500 rounded-full"
+                  >
+                    {user.email.charAt(0).toUpperCase() ?? "?"}
+                  </div>
+                )}
+              </DropdownMenuTrigger>
+
+              <DropdownMenuContent
+                side="left"
+                sideOffset={4}
+                className="mt-12 w-50 text-gray-700"
+              >
+                <DropdownMenuLabel>
+                  {user ? user.email : "My Account"}
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <Link to={`u/${user._id}`}>
+                  <DropdownMenuItem>
+                    <User className="mr-2 h-4 w-4" /> Profile
+                  </DropdownMenuItem>
+                </Link>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  role="button"
+                  onClick={async () => await logoutMutation.mutateAsync()}
+                >
+                  <LogOutIcon className="mr-2 h-4 w-4" />
+                  Log out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         )}
       </div>

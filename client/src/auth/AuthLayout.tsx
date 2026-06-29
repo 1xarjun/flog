@@ -8,8 +8,8 @@ export default function AuthLayout() {
   if (user) return <Navigate to="/" replace />;
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="space-y-4 bg-white shadow-md w-full max-w-sm text-gray-800 p-6 rounded text-sm">
+    <div className="flex items-center justify-center min-h-[calc(100vh-56px)]">
+      <div className="space-y-4 bg-white shadow-md w-full max-w-sm text-gray-800 p-6 rounded text-sm border">
         <Outlet />
       </div>
     </div>

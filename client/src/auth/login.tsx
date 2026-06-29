@@ -1,5 +1,5 @@
+import API from "@/api";
 import { queryClient } from "@/query/client";
-import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { Link } from "react-router";
 
@@ -7,36 +7,27 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const mutation = useMutation({
-    mutationFn: async ({
-      email,
-      password,
-    }: {
-      email: string;
-      password: string;
-    }) => {
-      const response = await fetch(
-        `http://localhost:3000/users?email=${email}&password=${password}`,
-      );
-      const result = await response.json();
-
-      if (result.length === 0) {
-        throw new Error("Invalid credentials");
-      }
-
-      return result[0];
-    },
-
-    onSuccess: (user) => {
-      console.log("login succeeds", user);
-      localStorage.setItem("user", JSON.stringify(user));
-      queryClient.setQueryData(["user"], user);
-    },
-  });
-
-  const handleSubmit = (e: React.SubmitEvent) => {
+  const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
-    mutation.mutate({ email, password });
+    try {
+      const res = await fetch(`${API}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!res.ok) throw new Error("Request failed!");
+
+      const result = await res.json();
+      if (result?.data) {
+        queryClient.setQueryData(["user"], result.data);
+        queryClient.invalidateQueries({ queryKey: ["posts"] });
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

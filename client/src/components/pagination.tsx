@@ -1,8 +1,17 @@
-import { useState } from "react";
+import useStore from "@/store/useStore";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function Pagination() {
-  const totalPages = 100;
-  const [current, setCurrent] = useState(1);
+export default function Pagination({
+  totalPages,
+  hasNext,
+  hasPrev,
+}: {
+  totalPages?: number;
+  hasNext?: boolean;
+  hasPrev?: boolean;
+}) {
+  const current = useStore((s) => s.currentPage);
+  const setCurrentPage = useStore((s) => s.actions.setCurrentPage);
 
   function returnPaginationNumbers(current: number, total: number) {
     const start = 1;
@@ -32,7 +41,7 @@ export default function Pagination() {
   }
 
   function RenderButtons() {
-    const pages = returnPaginationNumbers(current, 9);
+    const pages = returnPaginationNumbers(current, totalPages!);
     return pages.map((c: number | string, i: number) => (
       <button
         onClick={() => {
@@ -43,12 +52,12 @@ export default function Pagination() {
                 : i > current
                   ? prompt("enter page no: ", (i + 1).toString())
                   : null;
-            if (page) setCurrent(Number(page));
+            if (page) setCurrentPage(Number(page));
           } else {
-            setCurrent(Number(c));
+            setCurrentPage(Number(c));
           }
         }}
-        className={`px-2.5 py-1 rounded-xs border-t border-b border-r ${i === 0 ? "border-l" : ""} ${current === c ? "bg-white border border-green-500" : "bg-[#fbfbfb]"}  `}
+        className={`px-2.5 py-1 overflow-hidden border-t border-b border-r ${i === 0 ? "border-l rounded-l" : ""} ${i === pages.length - 1 ? "rounded-r" : ""} ${current === c ? "bg-white border border-green-500" : "bg-[#fbfbfb]"}  transition-colors duration-300`}
         key={i}
       >
         {c}
@@ -57,21 +66,23 @@ export default function Pagination() {
   }
 
   return (
-    <div className="text-xs flex gap-2 text-gray-800">
+    <div className="text-xs flex gap-2">
       <button
-        className="px-2.5 py-1 rounded-xs border bg-[#f9f9f9] disabled:hidden"
-        disabled={current === 1}
-        onClick={() => setCurrent((p) => p - 1)}
+        className="[&_svg]:h-4 py-1 pr-2 flex items-center rounded overflow-hidden border bg-[#f9f9f9] disabled:opacity-70 disabled:cursor-not-allowed transition-opacity duration-300"
+        disabled={!hasPrev}
+        onClick={() => setCurrentPage(current - 1)}
       >
-        Prev
+        <ChevronLeft />
+        <p>Prev</p>
       </button>
       <div className="flex">{RenderButtons()}</div>
       <button
-        className="px-2.5 py-1 rounded-xs border bg-[#f9f9f9] disabled:hidden"
-        disabled={current === totalPages}
-        onClick={() => setCurrent((p) => p + 1)}
+        className="[&_svg]:h-4 py-1 pl-2 flex items-center rounded overflow-hidden border bg-[#f9f9f9] disabled:opacity-70 disabled:cursor-not-allowed transition-opacity duration-300"
+        disabled={!hasNext}
+        onClick={() => setCurrentPage(current + 1)}
       >
-        Next
+        <p>Next</p>
+        <ChevronRight />
       </button>
     </div>
   );
