@@ -10,6 +10,7 @@
     "skipLibCheck": true, // Skips type checking of declaration files
     "moduleResolution": "node", // Makes module resolution work like Node.js
     "resolveJsonModule": true, // Allows importing .json files
+    "ignoreDeprecations": "6.0",
   },
   "include": ["src"], // Include all files in src
   "exclude": ["node_modules", "dist"], // Exclude compiled and dependency folders
