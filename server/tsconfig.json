@@ -8,9 +8,8 @@
     "strict": true, // Enables all strict type-checking options
     "forceConsistentCasingInFileNames": true, // Ensures consistency in import casing
     "skipLibCheck": true, // Skips type checking of declaration files
-    "moduleResolution": "node", // Makes module resolution work like Node.js
+    "moduleResolution": "nodenext", // Makes module resolution work like Node.js
     "resolveJsonModule": true, // Allows importing .json files
-    "ignoreDeprecations": "6.0",
   },
   "include": ["src"], // Include all files in src
   "exclude": ["node_modules", "dist"], // Exclude compiled and dependency folders
