@@ -9,9 +9,6 @@ import ErrorPage from "./ErrorPage";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./query/client";
 import User from "./components/User";
-import ProtectedRoute from "./components/protected-route";
-import Reply from "./components/reply";
-import Profile from "./components/profile";
 
 const router = createBrowserRouter([
   {

@@ -1,6 +1,6 @@
 import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
-import type { User } from "@/PostsN";
+import type { Post, User } from "@/PostsN";
 import { formattedDate } from "@/constants";
 import type { Post as PostType } from "@/PostsN";
 import PostHeader from "./post-header";
@@ -62,6 +62,8 @@ export default function User() {
     data: postsData,
     fetchNextPage,
     hasNextPage,
+    // @ts-expect-error -- ignore it for now
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     isFetchingNextPage,
     isFetchNextPageError,
   } = useInfiniteQuery({
@@ -226,13 +228,15 @@ export default function User() {
                       // problemm is in this
                       // fix it :TODO
                       const $ = e.currentTarget;
-                      if ($.textContent.includes(",")) {
+                      const txt = $.textContent;
+                      if (!txt) return;
+                      if (txt.includes(",")) {
                         setInput((p) => ({
                           ...p,
-                          likes: $.textContent.split(","),
+                          likes: txt.split(","),
                         }));
                       } else {
-                        setInput((p) => ({ ...p, likes: [$.textContent] }));
+                        setInput((p) => ({ ...p, likes: [txt] }));
                       }
                     }}
                   >
@@ -327,12 +331,16 @@ export default function User() {
                 className="flex flex-col gap-2 text-xs bg-white border *:pointer-events-none"
               >
                 <PostHeader
+                  current={0} // for now
                   postId={post._id!.toString()}
                   created_at={post.createdAt!}
                   index={index}
                   share={false}
                 />
-                <PostBody content={post.content} repliedTo={post.repliedTo} />
+                <PostBody
+                  content={post.content}
+                  repliedTo={post.repliedTo as Post}
+                />
                 <PostToolbar post={post} reply={false} />
               </Link>
             ))}

@@ -1,7 +1,6 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import type { User } from "@/PostsN";
 import { formattedDate } from "@/constants";
-import type { Post as PostType } from "@/PostsN";
+import type { Post, Post as PostType } from "@/PostsN";
 import PostHeader from "./post-header";
 import PostBody from "./post-body";
 import PostToolbar from "./post-toolbar";
@@ -34,6 +33,8 @@ export default function Profile() {
     data: postsData,
     fetchNextPage,
     hasNextPage,
+    // @ts-expect-error -- ignore it for now
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     isFetchingNextPage,
     isFetchNextPageError,
   } = useInfiniteQuery({
@@ -178,7 +179,10 @@ export default function Profile() {
                   index={index}
                   share={false}
                 />
-                <PostBody content={post.content} repliedTo={post.repliedTo} />
+                <PostBody
+                  content={post.content}
+                  repliedTo={post.repliedTo as Post}
+                />
                 <PostToolbar post={post} reply={false} />
               </Link>
             ))}

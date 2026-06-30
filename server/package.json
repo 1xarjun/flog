@@ -1,7 +1,7 @@
 {
-  "name": "fullstack-blog",
+  "name": "server",
   "version": "1.0.0",
-  "description": "- Authentication: JWT based authentication\r - Theme: Dark and Light theme support\r - Editor: Tiptap powered editor for creating/editing posts\r - Visibility: Make blog posts public or private\r - Upvote & Downvote: Upvote and Downvote setup for better visibility",
+  "license": "UNLICENSED",
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/index",

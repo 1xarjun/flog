@@ -18,16 +18,17 @@ import API from "./api";
 export type Post = {
   _id?: string;
   content?: JSONContent;
-  author: User;
+  author: string | User;
   repliedTo: Post | null | string;
   createdAt?: string;
-  scoreOfPost: number;
-  votedByUser: boolean;
-  voteType: "up" | "down" | null;
+  scoreOfPost?: number;
+  votedByUser?: boolean;
+  voteType?: "up" | "down" | null;
   pageNo: number;
 };
 
 export type User = {
+  _id: string;
   username: string;
   email: string;
   status: string;
@@ -131,7 +132,7 @@ export default function PostsN() {
         observer.disconnect();
       }
     };
-  }, [highlightId, isLoading, paramPage]);
+  }, [highlightId, isLoading, paramPage, setSearchParams]);
 
   const mutation = useMutation({
     mutationFn: CreatePost,
@@ -218,7 +219,7 @@ export default function PostsN() {
                 <div className="flex justify-between items-center [&_svg]:size-3 ">
                   <span className="font-medium [&_svg]:size-3 flex gap-1 items-center text-gray-700">
                     <CornerDownRight />
-                    Replying to {replyingTo.author.username}
+                    Replying to {(replyingTo.author as User).username}
                   </span>
                   <button onClick={() => setReplyingTo(undefined)}>
                     <X />

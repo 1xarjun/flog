@@ -1,6 +1,5 @@
 import { Share2 } from "lucide-react";
 import { formattedDate } from "@/constants";
-import useStore from "@/store/useStore";
 
 export default function PostHeader({
   created_at,
@@ -13,7 +12,7 @@ export default function PostHeader({
   index: number;
   share?: boolean;
   postId: string;
-  current: number;
+  current?: number;
 }) {
   // const currentPage = useStore((s) => s.currentPage);
 
@@ -40,7 +39,7 @@ export default function PostHeader({
           )}
 
           <span className="text-gray-500">
-            #{(current - 1) * 10 + index + 1}{" "}
+            #{current ? (current - 1) * 10 + index + 1 : index + 1}{" "}
             {/* as the limit is 10 (for now hardcoded to 10) */}
           </span>
         </div>

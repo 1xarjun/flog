@@ -2,9 +2,8 @@ import type { Post } from "@/PostsN";
 import useStore from "@/store/useStore";
 import { ArrowBigDown, ArrowBigUp, Reply } from "lucide-react";
 import { useEditorInstance } from "@/context/constants";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/query/client";
-import useUser from "@/query/user";
 import API from "@/api";
 
 export default function PostToolbar({
