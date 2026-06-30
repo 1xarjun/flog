@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/index",
-    "build": "tsc",
-    "start": "node dist/index.js"
+    "build": "npm rebuild bcrypt && tsc",
+    "start": "node dist/index",
+    "postinstall": "npm run build"
   },
   "type": "commonjs",
   "devDependencies": {
