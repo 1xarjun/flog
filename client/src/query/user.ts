@@ -6,7 +6,9 @@ export default function useUser() {
   return useQuery({
     queryKey: ["user"],
     queryFn: async (): Promise<User | null> => {
-      const response = await fetch(`${API}/auth/whoami`);
+      const response = await fetch(`${API}/auth/whoami`, {
+        credentials: "include",
+      });
       const result = await response.json();
       return result.data ? result.data : null;
     },

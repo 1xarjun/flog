@@ -96,6 +96,7 @@ export default function PostToolbar({
     }) => {
       return fetch(`${API}/votes`, {
         method: "PATCH",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

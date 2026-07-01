@@ -85,6 +85,7 @@ export default function User() {
     try {
       const res = await fetch(`${API}/users/${userId}`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

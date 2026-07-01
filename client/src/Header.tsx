@@ -21,7 +21,10 @@ export default function Header() {
 
   const logout = async () => {
     try {
-      const res = await fetch(`$${API}/auth/logout"`, { method: "POST" });
+      const res = await fetch(`$${API}/auth/logout"`, {
+        method: "POST",
+        credentials: "include",
+      });
       if (!res.ok) throw new Error("Request failed!");
     } catch (error) {
       console.error(error);

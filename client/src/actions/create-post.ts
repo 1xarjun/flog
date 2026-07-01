@@ -4,6 +4,7 @@ import type { Post } from "@/PostsN";
 export async function CreatePost(post: Post) {
   const res = await fetch(`${API}/posts`, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },

@@ -4,24 +4,24 @@ import { AppError } from "./auth.controller";
 import Vote from "../models/vote.model";
 import successResponse from "../helpers/success-response";
 
-export async function handleNewVote(req: Request, res: Response) {
-  try {
-    const { user_id, type, post_id } = req.body;
-    const vote = await Vote.create({ user_id, type, post_id });
-    return successResponse({ res, data: vote });
-  } catch (error: any) {
-    console.error(error);
-    if (error instanceof AppError)
-      return errorResponse(
-        res,
-        error.message,
-        error.name as ErrorResponse.Code,
-        error.statusCode,
-      );
+// export async function handleNewVote(req: Request, res: Response) {
+//   try {
+//     const { user_id, type, post_id } = req.body;
+//     const vote = await Vote.create({ user_id, type, post_id });
+//     return successResponse({ res, data: vote });
+//   } catch (error: any) {
+//     console.error(error);
+//     if (error instanceof AppError)
+//       return errorResponse(
+//         res,
+//         error.message,
+//         error.name as ErrorResponse.Code,
+//         error.statusCode,
+//       );
 
-    return errorResponse(res);
-  }
-}
+//     return errorResponse(res);
+//   }
+// }
 
 export async function handleVoteUpdate(req: Request, res: Response) {
   try {

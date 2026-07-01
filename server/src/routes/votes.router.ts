@@ -1,7 +1,4 @@
-import {
-  handleNewVote,
-  handleVoteUpdate,
-} from "../controllers/vote.controller";
+import { handleVoteUpdate } from "../controllers/vote.controller";
 import { Router } from "express";
 import isAuthenticated from "../middleware/is-authenticated";
 
