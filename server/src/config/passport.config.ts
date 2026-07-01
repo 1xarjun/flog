@@ -26,7 +26,6 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
   const user = await User.findById(id).select("-hashedPassword");
-  console.log(user + "from deserialize user in passport");
   if (!user) return done(null, false);
   return done(null, user);
 });
