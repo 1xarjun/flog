@@ -57,7 +57,7 @@ export default function PostsN() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["posts", paramPage],
     queryFn: () =>
-      fetch(`${API}/posts?p=${paramPage}`)
+      fetch(`${API}/posts?p=${paramPage}`, { credentials: "include" })
         .then((r) => r.json())
         .then((result) => result.data),
     staleTime: 1000 * 60,

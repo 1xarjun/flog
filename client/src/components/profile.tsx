@@ -42,6 +42,7 @@ export default function Profile() {
     queryFn: async ({ pageParam: cursor }) => {
       const res = await fetch(
         `${API}/posts?userId=${userId}&cursor=${cursor ?? ""}`,
+        { credentials: "include" },
       );
       return res.json();
     },

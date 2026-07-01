@@ -16,8 +16,6 @@ export default function PostToolbar({
   const setReplyingTo = useStore((state) => state.actions.setReplyingTo);
   const editor = useEditorInstance();
 
-  // TODO: Implement the upvote and downvote mechanism
-
   // const postUpvoteMutation = useMutation({
   //   mutationFn: ({
   //     post_id,
