@@ -70,7 +70,7 @@ export default function PostsN() {
   const { data: postsMeta } = useQuery({
     queryKey: ["posts-meta"],
     queryFn: () =>
-      fetch(`${API}/posts/meta-data`)
+      fetch(`${API}/posts/meta-data`, { credentials: "include" })
         .then((r) => r.json())
         .then((result) => result.data),
     staleTime: Infinity,

@@ -67,10 +67,11 @@ export default function User() {
     isFetchingNextPage,
     isFetchNextPageError,
   } = useInfiniteQuery({
-    queryKey: ["userPosts"],
+    queryKey: ["user_posts"],
     queryFn: async ({ pageParam: cursor }) => {
       const res = await fetch(
         `${API}/posts?userId=${userId}&cursor=${cursor ?? ""}`,
+        { credentials: "include" },
       );
       return res.json();
     },

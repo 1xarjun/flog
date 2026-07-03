@@ -4,6 +4,7 @@ import {
   handleCreate,
   handleGetPostsMeta,
 } from "../controllers/posts.controller";
+import isAuthenticated from "../middleware/is-authenticated";
 
 const router = Router();
 
