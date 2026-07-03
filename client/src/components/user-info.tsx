@@ -37,7 +37,7 @@ export default function UserInfo({ user }: { user: User }) {
         <li className="flex justify-between px-2">
           Location:
           <span className="text-gray-700 text-right">
-            {user?.city?.split(" ").join("\n") || "Bankura"}
+            {user?.city?.split(" ").join("\n") || "None"}
           </span>
         </li>
 
