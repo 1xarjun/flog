@@ -171,7 +171,7 @@ export default function PostsN() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto min-h-screen flex flex-col gap-2.5 py-8">
+    <div className="max-w-full sm:max-w-6xl mx-2 sm:mx-auto min-h-screen flex flex-col gap-2.5 py-8">
       <PaginationN
         totalPages={postsMeta?.totalPages}
         hasNext={paramPage + 1 <= postsMeta?.totalPages}
@@ -211,11 +211,11 @@ export default function PostsN() {
 
       {user && (
         <div className="flex flex-col gap-4 py-5 max-w-3xl">
-          <p className="text-base">Your Reply</p>
+          <p className="text-sm sm:text-base">Your Reply</p>
 
           {replyingTo && (
             <div className="border rounded overflow-hidden">
-              <div className="p-3 flex gap-1 flex-col text-xs bg-[#fbfbfb] text-gray-500">
+              <div className="p-3 flex gap-1 flex-col text-[10px] sm:text-xs bg-[#fbfbfb] text-gray-500">
                 <div className="flex justify-between items-center [&_svg]:size-3 ">
                   <span className="font-medium [&_svg]:size-3 flex gap-1 items-center text-gray-700">
                     <CornerDownRight />
@@ -238,7 +238,7 @@ export default function PostsN() {
           )}
 
           <Editor />
-          <div className="text-sm text-gray-700 flex justify-end">
+          <div className="text-xs sm:text-sm text-gray-700 flex justify-end">
             <button
               type="button"
               disabled={editor?.isEmpty}

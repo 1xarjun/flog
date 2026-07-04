@@ -45,7 +45,7 @@ export default function Header() {
 
   return (
     <div className="fixed inset-x-0 bg-white border-b z-30">
-      <div className="max-w-6xl mx-auto py-2.5 flex justify-between items-center h-14">
+      <div className="max-w-full sm:max-w-6xl mx-4 sm:mx-auto py-2.5 flex justify-between items-center h-14">
         <div>
           <Link to="/" className="text-xl font-semibold">
             Flog
@@ -68,7 +68,7 @@ export default function Header() {
             </Link>
           </div>
         ) : (
-          <div className="flex gap-2 items-center text-xs">
+          <div className="flex gap-2 items-center">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 {user.pfp ? (
@@ -90,21 +90,22 @@ export default function Header() {
                 sideOffset={4}
                 className="mt-12 w-50 text-gray-700"
               >
-                <DropdownMenuLabel>
+                <DropdownMenuLabel className="text-xs sm:text-sm">
                   {user ? user.email : "My Account"}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <Link to={`u/${user._id}`}>
-                  <DropdownMenuItem>
-                    <User className="mr-2 h-4 w-4" /> Profile
+                  <DropdownMenuItem className="text-xs sm:text-sm">
+                    <User className="mr-1 sm:mr-2 size-3 sm:size-4" /> Profile
                   </DropdownMenuItem>
                 </Link>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   role="button"
+                  className="text-xs sm:text-sm"
                   onClick={async () => await logoutMutation.mutateAsync()}
                 >
-                  <LogOutIcon className="mr-2 h-4 w-4" />
+                  <LogOutIcon className="mr-1 sm:mr-2 size-3 sm:size-4" />
                   Log out
                 </DropdownMenuItem>
               </DropdownMenuContent>

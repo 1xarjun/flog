@@ -39,15 +39,17 @@ export default function PostBody({
   });
 
   return (
-    <div className={`h-full flex flex-col ${repliedTo ? "gap-2" : ""} p-2.5`}>
+    <div
+      className={`h-full flex flex-col ${repliedTo ? "gap-2" : ""} px-2.5 py-1.5 sm:py-2.5`}
+    >
       {repliedTo && (
         <Link
           // now here the it wouldnt be currentPage and i need to know the page of the post somehow
           to={`/?highlight=${repliedTo._id}&page=${repliedTo.pageNo}`}
           className="border rounded overflow-hidden"
         >
-          <div className="p-3 flex gap-1 flex-col text-xs bg-[#fbfbfb] text-gray-500">
-            <span className="font-medium [&_svg]:size-3 flex gap-1 items-center text-gray-700">
+          <div className="p-3 flex gap-1 flex-col text-[10px] sm:text-xs bg-[#fbfbfb] text-gray-500">
+            <span className="font-medium [&_svg]:size-2.5 sm:[&_svg]:size-3 flex gap-1 items-center text-gray-700">
               <CornerDownRight />
               Replying to {(repliedTo.author as User).username}
             </span>

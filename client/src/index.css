@@ -150,21 +150,21 @@ div.tiptap.ProseMirror[contenteditable="true"] {
 
 /* ================= PROSEMIRROR (editor) ================= */
 .ProseMirror {
-    @apply text-sm;
+    @apply text-xs sm:text-sm;
 }
 
 .ProseMirror h1 {
-    @apply font-bold text-lg;
+    @apply font-bold text-base sm:text-lg;
     margin: 14px 0 6px;
 }
 
 .ProseMirror h2 {
-    @apply font-bold text-base;
+    @apply font-bold text-sm sm:text-base;
     margin: 12px 0 6px;
 }
 
 .ProseMirror h3 {
-    @apply font-bold text-sm;
+    @apply font-bold text-xs sm:text-sm;
     margin: 10px 0 4px;
 }
 

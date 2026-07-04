@@ -11,7 +11,7 @@ export default function Editor() {
       <EditorToolbar editor={editor} />
       <EditorContent
         editor={editor as EditorType}
-        className="text-sm bg-white"
+        className="text-xs sm:text-sm bg-white"
       />
     </div>
   );

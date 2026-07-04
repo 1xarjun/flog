@@ -43,7 +43,7 @@ export default function EditorToolbar({ editor }: { editor?: Editor }) {
   }
 
   return (
-    <div className="flex gap-1 border-b p-2 items-center [&_svg]:size-4 bg-[#fbfbfb]">
+    <div className="flex gap-1 overflow-x-auto border-b p-2 items-center [&_svg]:size-3 sm:[&_svg]:size-4 bg-[#fbfbfb]">
       <div className="flex gap-1">
         <button
           title="Bold"

@@ -130,19 +130,19 @@ export default function User() {
   const isOwner = userInSession?._id === userData?.data._id;
 
   return (
-    <div className="min-h-screen py-8 px-6 bg-[#fefefe]">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid gap-4 grid-cols-6 border rounded overflow-hidden bg-[#fbfbfb]">
-          <div className="flex flex-col items-center col-span-1 px-2.5 pt-3">
+    <div className="min-h-screen py-8 sm:px-6 bg-[#fefefe]">
+      <div className="max-w-full sm:max-w-6xl mx-2 sm:mx-auto">
+        <div className="grid gap-2 sm:gap-4 grid-cols-3 sm:grid-cols-6 border rounded overflow-hidden bg-[#fbfbfb]">
+          <div className="flex flex-col justify-center sm:justify-start items-center col-span-1 px-2.5 pt-3">
             <div className="relative">
               {input.pfp || user.pfp ? (
                 <img
-                  className="size-30 rounded-full border object-center object-cover overflow-hidden"
+                  className="size-20 sm:size-30 rounded-full border object-center object-cover overflow-hidden"
                   src={input.pfp || user.pfp}
                   alt={`${user.username}'s profile`}
                 />
               ) : (
-                <div className="border font-bold text-white bg-linear-to-br from-indigo-500 to-pink-500 size-30 text-6xl flex justify-center items-center rounded-full">
+                <div className="border font-bold text-white bg-linear-to-br from-indigo-500 to-pink-500 size-20 sm:size-30 text-6xl flex justify-center items-center rounded-full">
                   {user.email?.charAt(0).toUpperCase() ?? "?"}
                 </div>
               )}
@@ -172,14 +172,14 @@ export default function User() {
             </div>
           </div>
 
-          <div className="col-span-5 text-sm px-2.5 pt-5 flex justify-between">
+          <div className="col-span-2 sm:col-span-5 text-xs sm:text-sm px-2.5 pt-5 relative">
             <div>
               <div className="flex flex-col gap-1">
-                <span className="text-xl font-semibold text-violet-400 max-w-28 truncate">
+                <span className="text-lg sm:text-xl font-semibold text-violet-400 max-w-28 truncate">
                   {user.username}
                 </span>
                 {/*<p className=" text-gray-700 max-w-full truncate">*/}
-                <p className=" text-gray-700">
+                <div className=" text-gray-700">
                   <span
                     // TODO: fix contenteditable error
                     contentEditable={isEditing}
@@ -210,7 +210,7 @@ export default function User() {
                   >
                     {input.city || user.city || "City"}
                   </span>
-                </p>
+                </div>
               </div>
 
               <ul className="text-gray-500 flex flex-col gap-1 pt-1">
@@ -258,7 +258,7 @@ export default function User() {
               </ul>
             </div>
 
-            <div className="h-full flex gap-2.5 items-end">
+            <div className="absolute bottom-0 -right-4 sm:right-4 flex gap-2">
               {isOwner && (
                 // TODO: fix input.likes.join error
                 <Button
@@ -273,6 +273,7 @@ export default function User() {
                     setIsEditing(true);
                   }}
                   variant="outline"
+                  className="bg-transparent"
                 >
                   <Pencil />
                 </Button>
@@ -286,6 +287,7 @@ export default function User() {
                     userProfileMutation.mutate(input);
                   }}
                   variant="outline"
+                  className="bg-transparent"
                 >
                   <Check />
                 </Button>
@@ -293,7 +295,7 @@ export default function User() {
             </div>
           </div>
 
-          <div className="col-span-6 flex justify-between bg-white border-t text-xs text-gray-500 px-6 py-1.5">
+          <div className="col-span-6 flex justify-between bg-white border-t text-[10px] sm:text-xs text-gray-500 px-6 py-1.5">
             <div className="flex flex-col items-center">
               Mentions{" "}
               <span className="text-gray-700">
@@ -320,7 +322,7 @@ export default function User() {
         {/*<div className="flex flex-col gap-2.5">*/}
         <div className="flex gap-4 items-center justify-center mt-8 mb-5">
           {/*<span className="border-t w-5" />*/}
-          <span className="text-base">All posts</span>
+          <span className="text-sm sm:text-base">All posts</span>
           {/*<span className="flex-1 border-b" />*/}
         </div>
 

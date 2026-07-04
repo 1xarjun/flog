@@ -71,9 +71,9 @@ export default function PaginationN({
   }
 
   return (
-    <div className="text-xs flex gap-2">
+    <div className="text-[10px] sm:text-xs flex gap-2">
       <button
-        className="[&_svg]:h-4 py-1 pr-2 flex items-center rounded overflow-hidden border bg-[#f9f9f9] disabled:opacity-70 disabled:cursor-not-allowed transition-opacity duration-300"
+        className="[&_svg]:h-3 sm:[&_svg]:h-4 py-1 pr-2 flex items-center rounded overflow-hidden border bg-[#f9f9f9] disabled:opacity-70 disabled:cursor-not-allowed transition-opacity duration-300"
         disabled={!hasPrev}
         onClick={() => navigate(`?page=${current - 1}`)}
       >
@@ -82,7 +82,7 @@ export default function PaginationN({
       </button>
       <div className="flex">{RenderButtons()}</div>
       <button
-        className="[&_svg]:h-4 py-1 pl-2 flex items-center rounded overflow-hidden border bg-[#f9f9f9] disabled:opacity-70 disabled:cursor-not-allowed transition-opacity duration-300"
+        className="[&_svg]:h-3 sm:[&_svg]:h-4 py-1 pl-2 flex items-center rounded overflow-hidden border bg-[#f9f9f9] disabled:opacity-70 disabled:cursor-not-allowed transition-opacity duration-300"
         disabled={!hasNext}
         onClick={() => navigate(`?page=${current + 1}`)}
       >

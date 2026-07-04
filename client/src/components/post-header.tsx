@@ -17,7 +17,7 @@ export default function PostHeader({
   // const currentPage = useStore((s) => s.currentPage);
 
   return (
-    <div className="px-2">
+    <div className="px-2 text-[10px] sm:text-xs">
       <div className="flex justify-between items-center border-b text-gray-500 px-2">
         {/*TODO: small pointer to the user*/}
         <span>
@@ -32,7 +32,7 @@ export default function PostHeader({
                 navigator.clipboard.writeText(currentPostURL);
                 alert("Link copied successfully!");
               }}
-              className="[&_svg]:size-3 px-1.5 rounded-md  text-gray-500 hover:text-gray-800"
+              className="[&_svg]:size-2.5 sm:[&_svg]:size-3 px-1.5 rounded-md  text-gray-500 hover:text-gray-800"
             >
               <Share2 />
             </button>
