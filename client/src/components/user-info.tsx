@@ -9,6 +9,7 @@ export default function UserInfo({ user }: { user: User }) {
         <div className="rounded-full border bg-white overflow-hidden">
           {user.pfp ? (
             <img
+              referrerPolicy="no-referrer"
               className="rounded-full size-18 sm:size-25 overflow-hidden object-center object-cover"
               src={user.pfp}
               alt={`${user.username}'s profile`}

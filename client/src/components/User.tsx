@@ -79,6 +79,7 @@ export default function User() {
     getNextPageParam: (lastPage) => {
       return lastPage.data?.nextCursor;
     },
+    staleTime: 0,
     refetchOnMount: "always",
   });
 
@@ -137,6 +138,7 @@ export default function User() {
             <div className="relative">
               {input.pfp || user.pfp ? (
                 <img
+                  referrerPolicy="no-referrer"
                   className="size-20 sm:size-30 rounded-full border object-center object-cover overflow-hidden"
                   src={input.pfp || user.pfp}
                   alt={`${user.username}'s profile`}

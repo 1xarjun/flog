@@ -73,7 +73,11 @@ export default function Header() {
               <DropdownMenuTrigger asChild>
                 {user.pfp ? (
                   <Avatar size="lg">
-                    <AvatarImage className="object-cover" src={user.pfp} />
+                    <AvatarImage
+                      referrerPolicy="no-referrer"
+                      className="object-cover"
+                      src={user.pfp}
+                    />
                   </Avatar>
                 ) : (
                   <div

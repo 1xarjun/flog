@@ -120,10 +120,6 @@ export default function PostsN() {
     return () => {
       if (borderTimeoutId) {
         if (el) el.style.border = prev;
-        setSearchParams((prev) => {
-          prev.delete("highlight");
-          return prev;
-        });
         clearTimeout(borderTimeoutId);
       }
 
