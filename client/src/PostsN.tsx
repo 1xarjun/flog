@@ -167,7 +167,7 @@ export default function PostsN() {
   }
 
   return (
-    <div className="max-w-full sm:max-w-6xl mx-2 sm:mx-auto min-h-screen flex flex-col gap-2.5 py-8">
+    <div className="max-w-full sm:max-w-6xl mx-2 sm:mx-auto min-h-dvh flex flex-col gap-2.5 py-8">
       <PaginationN
         totalPages={postsMeta?.totalPages}
         hasNext={paramPage + 1 <= postsMeta?.totalPages}

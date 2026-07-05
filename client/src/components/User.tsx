@@ -47,17 +47,6 @@ export default function User() {
     refetchOnMount: "always",
   });
 
-  // useEffect(() => {
-  //   const user = userData?.data;
-  //   if (!user) return;
-  //   setInput({
-  //     pfp: user.pfp ?? "",
-  //     status: user.status ?? "",
-  //     city: user.city ?? "",
-  //     likes: user.likes ?? "",
-  //   });
-  // }, [userData]);
-
   const {
     data: postsData,
     fetchNextPage,
@@ -67,7 +56,7 @@ export default function User() {
     isFetchingNextPage,
     isFetchNextPageError,
   } = useInfiniteQuery({
-    queryKey: ["user_posts"],
+    queryKey: ["user_posts", userId],
     queryFn: async ({ pageParam: cursor }) => {
       const res = await fetch(
         `${API}/posts?userId=${userId}&cursor=${cursor ?? ""}`,
