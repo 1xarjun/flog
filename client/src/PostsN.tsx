@@ -90,7 +90,7 @@ export default function PostsN() {
         el.style.border = prev;
       }
 
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
       prev = getComputedStyle(el).border;
       el.style.border = "1px solid blue";
       borderTimeoutId = setTimeout(() => {
@@ -167,6 +167,7 @@ export default function PostsN() {
   }
 
   return (
+    // dvh didn't fixed the scroll issue on mobile screens
     <div className="max-w-full sm:max-w-6xl mx-2 sm:mx-auto min-h-dvh flex flex-col gap-2.5 py-8">
       <PaginationN
         totalPages={postsMeta?.totalPages}
